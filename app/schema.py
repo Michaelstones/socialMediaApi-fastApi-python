@@ -1,6 +1,4 @@
-from ast import Str
-from re import S
-from pydantic import BaseModel, EmailStr, Field, conint
+from pydantic import BaseModel, EmailStr, conint
 from datetime import datetime
 from typing import Optional
 

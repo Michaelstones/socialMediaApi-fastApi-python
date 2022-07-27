@@ -9,11 +9,11 @@ class Setting(BaseSettings):
     database_username:str
     secret_key:str
     algorithm:str
-    access_token_expiry:int
+    access_token_expire_minutes:int
     class Config:
         env_file='.env'
     
     
-setting=Setting()
+settings=Setting()
     
     

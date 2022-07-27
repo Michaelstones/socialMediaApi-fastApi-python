@@ -5,11 +5,11 @@ from datetime import datetime, timedelta
 from app import models
 from . import schema, database
 from sqlalchemy.orm import Session
-from .config import setting
+from .config import settings
 
-SECRET_KEY= setting.secret_key
-ALGO= setting.algorithm
-ACCESS_TOKEN_EXPIRE_MINUTES = setting.access_token_expiry
+SECRET_KEY= settings.secret_key
+ALGORITHM= settings.algorithm
+ACCESS_TOKEN_EXPIRE_MINUTES = settings.access_token_expire_minutes
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
 
@@ -17,12 +17,12 @@ def create_Jwt_Token (data:dict):
     encoded_co = data.copy()
     expire = datetime.utcnow() + timedelta(ACCESS_TOKEN_EXPIRE_MINUTES)
     encoded_co.update({'exp':expire})
-    encoded_jwt= jwt.encode(encoded_co, SECRET_KEY, algorithm=ALGO)
+    encoded_jwt= jwt.encode(encoded_co, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 def verify_Token(token:str, credentials_exception):
     try: 
-        check = jwt.decode(token, SECRET_KEY, ALGO)
+        check = jwt.decode(token, SECRET_KEY, ALGORITHM)
         id:str = check.get('user_id')
         if id is None:
             raise credentials_exception
