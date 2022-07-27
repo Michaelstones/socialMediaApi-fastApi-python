@@ -24,7 +24,7 @@ app.add_middleware(
 async def main():
     return {"message": "Hello World"}
 
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
       
