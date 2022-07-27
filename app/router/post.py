@@ -12,7 +12,7 @@ router=APIRouter(prefix='/posts', tags=['Posts'])
 def get_post(db:Session=Depends(get_db),curr_user:int = Depends(oauth.get_cur_user), limit:int=5, skip:int=2, search:Optional[str]=''):
     # cur.execute(""" SELECT * FROM products."postsAPI" """)
     # post = cur.fetchall()
-    posts = db.query(models.Post).filter(models.Post.title.contains(search)).limit(limit).offset(skip).all()
+    # posts = db.query(models.Post).filter(models.Post.title.contains(search)).limit(limit).offset(skip).all()
     result =db.query(models.Post, func.count(models.Vote.post_id).label('vote')).join(models.Vote,
                                                                                       models.Vote.post_id==models.Post.id,
                                                                                       isouter=True).group_by(models.Post.id).filter(models.Post.title.contains(search)).limit(limit).offset(skip).all()
@@ -66,7 +66,7 @@ def delete_single_post(id:int,db:Session=Depends(get_db), curr_user:int = Depend
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
-@router.put('/{id}', status_code=status.HTTP_200_OK,response_model=schema.PostOut)   
+@router.put('/{id}', status_code=status.HTTP_200_OK,response_model=schema.Post)   
 def update_single_post(id:int, post:schema.PostCreate,db:Session=Depends(get_db), curr_user:int = Depends(oauth.get_cur_user)):
     # cur.execute("""UPDATE products."postsAPI" SET title=%s, content=%s, published=%s WHERE id=%s RETURNING * """,
     #             (post.title, post.content, post.published, str(id),))
