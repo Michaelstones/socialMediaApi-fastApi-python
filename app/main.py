@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from . import models
 from .database import engine, get_db
 from .router import post, user,auth, vote
-from .config import setting
+from .config import settings
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
