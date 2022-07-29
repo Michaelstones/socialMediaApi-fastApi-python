@@ -4,6 +4,14 @@ on: [push, pull_request]
 
 jobs:
   job1:
+    env: DATABASE_HOSTNAME=localhost
+      DATABASE_PORT=5432
+      DATABASE_PASSWORD=mickshow
+      DATABASE_NAME=fastapi
+      DATABASE_USERNAME=postgres
+      SECRET_KEY=564e7177173da9f9e3b67720a21530c6ecf8a62823b18056c20792133e668b5a
+      ALGORITHM=HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES=30
     runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
