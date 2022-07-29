@@ -9,7 +9,7 @@ router=APIRouter(prefix='/posts', tags=['Posts'])
 
 # ,response_model=List[schema.Post]
 @router.get('/' , response_model=List[schema.PostOut])
-def get_post(db:Session=Depends(get_db),curr_user:int = Depends(oauth.get_cur_user), limit:int=5, skip:int=2, search:Optional[str]=''):
+def get_post(db:Session=Depends(get_db),curr_user:int = Depends(oauth.get_cur_user), limit:int=10, skip:int=0, search:Optional[str]=''):
     # cur.execute(""" SELECT * FROM products."postsAPI" """)
     # post = cur.fetchall()
     # posts = db.query(models.Post).filter(models.Post.title.contains(search)).limit(limit).offset(skip).all()
