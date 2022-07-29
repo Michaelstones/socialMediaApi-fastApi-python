@@ -1,5 +1,3 @@
-import email
-from telnetlib import STATUS
 from app import schema
 import pytest
 from jose import jwt

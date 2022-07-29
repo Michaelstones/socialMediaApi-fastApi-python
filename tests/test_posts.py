@@ -1,6 +1,4 @@
-from re import A
 from app import schema, models
-from tests.conftest import test_post
 import pytest
 
 def test_get_all_posts(authorized_user, test_post):

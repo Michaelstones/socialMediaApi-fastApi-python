@@ -1,4 +1,3 @@
-from pyexpat import model
 from fastapi.testclient import TestClient
 from app.main import app
 from app.config import settings
